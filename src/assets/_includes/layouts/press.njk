@@ -1,0 +1,35 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+
+  <div class="wrapper wrapper--narrow wrapper--press">
+    <ul class="press__list">
+      {% for press in collections.press | reverse %}
+        <li class="press__element {{ "press__element--right" if loop.index % 2 == 0 }}">
+          <div class="press__thumbnail {{ "press__thumbnail--right" if loop.index % 2 == 0 }}">
+            {% if press.data.thumbnailImage %}
+              {% Image press.data.thumbnailImage,
+              "",
+              "30%" %}
+            {% endif %}
+          </div>
+          <div class="press__details {{ "press__details--right" if loop.index % 2 == 0 }}">
+            <h6>{{ press.data.publicationDate }}</h6>
+            <h3>{{ press.data.title }}</h3>
+            <p>{{ press.data.description }}</p>
+            {% for link in press.data.links %}
+              {% if link.isExternal %}
+                <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+              {% else %}
+                <a href="{{ press.url }}">{{ link.text }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </li>
+      {% endfor %}
+
+    </ul>
+    {{ content | safe }}
+  </div>
+
+{% endblock %}

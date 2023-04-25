@@ -1,0 +1,62 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+
+  {% Parallax imageHero %}
+
+  <div class="wrapper wrapper--wide wrapper--home">
+    {{ content | safe }}
+    <ul class="upcoming-events__list">
+      {% for event in collections
+        .events
+        .slice(0, 10) | reverse %}
+
+        <li class="upcoming-events__element">
+          <div class="upcoming-events__image">{% Image event
+              .data
+              .details[0]
+              .thumbnailImage,
+            "",
+            "30%" %}</div>
+          <div class="upcoming-events__details" data-expanded="false">
+            <h5>
+              {{ event.data.details[1].from }}
+              {% if event
+                .data
+                .details[2]
+                .to %}
+              – {{ event.data.details[2].to if event.data.details[2].to }}
+              {% endif %}
+            </h5>
+            <a href="{{ event.url }}">
+              <h2>{{ event.data.title }}</h2>
+            </a>
+            <p class="upcoming-events__details__description">{{ event.data.details[3].textPreview }}</p>
+            <div class="upcoming-events__expand-button" data-overflow="false">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35 13L20 27.4828L5 13"/>
+              </svg>
+            </div>
+          </div>
+        </li>
+
+        {#
+        {% EventCard event.data.title,
+        event.data.details,
+        event.url %}
+#}
+
+      {% endfor %}
+      <a href="/calendar">
+        <h2>previous events...</h2>
+      </a>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block bodyend %}
+  <script src="/assets/js/parallax.js"></script>
+  <script src="/assets/js/home-header.js"></script>
+  <script src="/assets/js/event-card.js"></script>
+  {{ super() }}
+{% endblock %}

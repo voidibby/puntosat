@@ -1,0 +1,55 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+
+  <div class="wrapper wrapper--wide--works wrapper--works">
+    {{ content | safe }}
+    <ul class="works__list">
+
+      {% for work in collections.works | reverse %}
+        <li class="works__element">
+          <a href="{{ work.url }}">
+            <div class="works__thumbnail">
+              {% if work.data.projectImages %}
+                {% Image work
+                  .data
+                  .projectImages[0]
+                  .path,
+                work
+                  .data
+                  .projectImages[0]
+                  .alt %}
+              {% endif %}
+            </div>
+            <h5>
+              {{ work.data.title }}
+            </h5>
+          </a>
+        </li>
+      {%- endfor %}
+
+      {% for i in range(0, 20) %}
+        <li class="works__element">
+          <a href="{{ collections.works[0].url }}">
+            <div class="works__thumbnail">
+              {% if collections
+                .works[0]
+                .data
+                .thumbnailImage %}
+                {% Image collections
+                  .works[0]
+                  .data
+                  .thumbnailImage,
+                "" %}
+              {% endif %}
+            </div>
+            <h5>
+              {{ collections.works[0].data.title }}
+            </h5>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+{% endblock %}

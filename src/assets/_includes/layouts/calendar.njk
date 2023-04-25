@@ -1,0 +1,37 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+
+  <div class="wrapper wrapper--narrower wrapper--calendar">
+    <ul class="calendar__list">
+      {% for event in collections.events | reverse %}
+        <li class="calendar__element">
+          <a href="{{ event.url }}">
+            <div class="calendar__image">
+              {% if event
+                .data
+                .details[0]
+                .thumbnailImage %}
+                {% Image event
+                  .data
+                  .details[0]
+                  .thumbnailImage,
+                "",
+                "30%" %}
+              {% endif %}
+            </div>
+            {% if event
+              .data
+              .details[0]
+              .alt %}
+              <h6 class="calendar__image__credits">{{ event.data.details[0].alt }}</h6>
+            {% endif %}
+            <h3>{{ event.data.title }}</h3>
+          </a>
+          <p>{{ event.data.details[3].textPreview }}</p>
+        </li>
+      {%- endfor %}
+    </ul>
+  </div>
+
+{% endblock %}

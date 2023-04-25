@@ -1,0 +1,74 @@
+{% extends "./base.njk" %}
+
+{% block headend %}
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+{% endblock %}
+
+{% block content %}
+
+  {% if projectImages %}
+    <div class="work__hero-image">
+      {% Image mainImage,
+      "" %}
+    </div>
+  {% endif %}
+
+  <div class="work__element wrapper wrapper--wide wrapper--work">
+    <div class="work__element__details">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="work__element__description">
+      <div class="languages__element">
+        <h5 id="es">ES</h5>
+        <h5 id="en">EN</h5>
+        <h5 id="de">DE</h5>
+      </div>
+      <div class="languages__text"></div>
+      <div class="languages__text__container">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+
+  {% if projectVideoSource %}
+    <div class="work__element__video wrapper--wide">
+      <iframe src="{{ projectVideoSource }}"  frameborder="0" allowfullscreen></iframe>
+    </div>
+  {% endif %}
+
+  {% if projectImages %}
+
+    {% ImageSlider projectImages %}
+
+  {% endif %}
+
+  {% set relatedPosts = collections.works | related %}
+  {% if relatedPosts.length %}
+    <div class="work__related-projects wrapper wrapper--wide">
+      <h6>Related works</h6>
+      <ul>
+        {% for work in relatedPosts %}
+          <li class="work__related-projects__element">
+            <a href="{{ work.url }}">
+              <div class="work__related-projects__element__thumbnail">
+                {% Image work.data.thumbnailImage,
+                "" %}
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block bodyend %}
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script type="text/javascript" src="//unpkg.com/pinch-zoom-js@2.3.5/dist/pinch-zoom.umd.js"></script>
+  <script src="/assets/js/slick.js"></script>
+  <script src="/assets/js/language-display.js"></script>
+  {{ super() }}
+{% endblock %}

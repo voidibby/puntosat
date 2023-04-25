@@ -1,0 +1,67 @@
+/* 
+  SASS Tutorial (build your own CSS library) #15 - Media Queries
+  https://www.youtube.com/watch?v=3R4fpnIAozs 
+*/
+
+@mixin media-sm {
+  @media screen and (min-width: 640px) {
+    @content;
+  }
+}
+@mixin media-md {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin media-lg {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+@mixin media-xl {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+@mixin media-2xl {
+  @media screen and (min-width: 1536px) {
+    @content;
+  }
+}
+
+@font-face {
+  /* Thin */
+  font-family: "HelveticaNeue";
+  font-weight: 100;
+  src: url(../fonts/HelveticaNeueLTStd-100.otf) format("opentype");
+}
+@font-face {
+  /* Ultra Light */
+  font-family: "HelveticaNeue";
+  font-weight: 200;
+  src: url(../fonts/HelveticaNeueLTStd-200.otf) format("opentype");
+}
+@font-face {
+  /* Light */
+  font-family: "HelveticaNeue";
+  font-weight: 300;
+  src: url(../fonts/HelveticaNeueLTStd-300.otf) format("opentype");
+}
+@font-face {
+  /* Roman */
+  font-family: "HelveticaNeue";
+  font-weight: 400;
+  src: url(../fonts/HelveticaNeueLTStd-400.otf) format("opentype");
+}
+@font-face {
+  /* Medium */
+  font-family: "HelveticaNeue";
+  font-weight: 500;
+  src: url(../fonts/HelveticaNeueLTStd-500.otf) format("opentype");
+}
+@font-face {
+  /* Black */
+  font-family: "HelveticaNeue";
+  font-weight: 900;
+  src: url(../fonts/HelveticaNeueLTStd-900.otf) format("opentype");
+}

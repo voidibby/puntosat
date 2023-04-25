@@ -1,0 +1,28 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+
+  <div class="wrapper wrapper--narrow wrapper--event">
+    <div class="event__element">
+      <h1>{{ title }}</h1>
+      <h3>
+        {{ details[1].from }}
+        {% if details[2].to %}
+              – {{ details[2].to if details[2].to }}
+        {% endif %}
+      </h3>
+      {% if mainImage[0].src %}
+        <div class="event__element__image">
+          {% Image mainImage[0].src,
+          mainImage[0].alt %}
+          {% if mainImage[0].alt %}
+            <h6 class="calendar__image__credits">{{ mainImage[0].alt }}</h6>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {{ content | safe }}
+    </div>
+  </div>
+
+{% endblock %}

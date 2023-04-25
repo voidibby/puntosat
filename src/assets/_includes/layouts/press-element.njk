@@ -1,0 +1,22 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+
+  <div class="wrapper wrapper--narrow wrapper--press-element">
+    <div class="languages__element">
+      <h5 id="es">ES</h5>
+      <h5 id="en">EN</h5>
+      <h5 id="de">DE</h5>
+    </div>
+    <div class="languages__text"></div>
+    <div class="languages__text__container">
+      {{ content | safe }}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block bodyend %}
+  <script src="/assets/js/language-display.js"></script>
+  {{ super() }}
+{% endblock %}

@@ -1,0 +1,26 @@
+{
+  "name": "puntosat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "npx @11ty/eleventy --serve --port=8001",
+    "build": "npx @11ty/eleventy",
+    "deploy-test": "surge _site --domain rich-love.surge.sh",
+    "clean": "rm -rf _site",
+    "generate": "node src/assets/tools/generate.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0"
+  },
+  "dependencies": {
+    "@11ty/eleventy-img": "^3.0.0",
+    "eleventy-sass": "^2.2.1",
+    "generate-template-files": "^3.2.1",
+    "markdown-it-container": "^3.0.0",
+    "pinch-zoom-js": "^2.3.5"
+  }
+}
